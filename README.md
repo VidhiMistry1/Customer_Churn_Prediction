@@ -4,7 +4,9 @@ This project analyzes customer churn for a fictional telecommunications company.
 
 ## 1. Data File & Source
 
-The dataset used in this project is based on the **Telco customer churn** sample data module published by IBM, which tracks a fictional telco company's customer churn.  The source dataset contains around 7 043 customer records with 21 features covering demographics, account information, service usage, and churn status:contentReference[oaicite:2]{index=2}.  Key columns include:
+The dataset used in this project is based on the **Telco customer churn** sample data module published by IBM, which tracks a fictional telco company's customer churn.  The source dataset contains around 7043 customer records with 21 features covering demographics, account information, service usage, and churn status.  
+
+Key columns include:
 
 - **customerID**: unique identifier for each customer  
 - **gender**, **SeniorCitizen**, **Partner**, **Dependents**: demographic attributes  
@@ -12,7 +14,7 @@ The dataset used in this project is based on the **Telco customer churn** sample
 - **PhoneService**, **MultipleLines**, **InternetService**, **OnlineSecurity**, **OnlineBackup**, **DeviceProtection**, **TechSupport**, **StreamingTV**, **StreamingMovies**: service usage features  
 - **Contract**, **PaperlessBilling**, **PaymentMethod**: contract and billing information  
 - **MonthlyCharges**, **TotalCharges**: billing amounts  
-- **Churn**: whether the customer churned in the last month:contentReference[oaicite:3]{index=3}  
+- **Churn**: whether the customer churned in the last month
 
 Because internet download is disabled in this environment, a synthetic sample dataset (`customer_churn_sample.csv`) with 100 rows has been created using similar columns and value distributions.  This file is provided for demonstration and can be replaced with the official dataset when running the project locally.
 
