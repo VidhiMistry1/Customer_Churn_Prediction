@@ -4,7 +4,7 @@ This project analyzes customer churn for a fictional telecommunications company.
 
 ## 1. Data File & Source
 
-The dataset used in this project is based on the **Telco customer churn** sample data module published by IBM, which tracks a fictional telco company's customer churn.  The source dataset contains around 7043 customer records with 21 features covering demographics, account information, service usage, and churn status.  
+The dataset used in this project is based on the **Telco customer churn** (https://www.kaggle.com/datasets/blastchar/telco-customer-churn?resource=download)sample data module published by IBM, which tracks a fictional telco company's customer churn.  The source dataset contains around 7043 customer records with 21 features covering demographics, account information, service usage, and churn status.  
 
 Key columns include:
 
