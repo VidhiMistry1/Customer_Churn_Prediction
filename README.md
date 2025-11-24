@@ -160,7 +160,4 @@ These insights directly support retention strategy, pricing decisions, and custo
 
 ---
 
-# Customer Churn Analysis (Telecom Industry)
-*A Business Analytics Project focused on customer behavior, retention insights, and data-driven decision making.*
-
 
