@@ -106,7 +106,7 @@ These findings guide retention campaigns, pricing adjustments, and CX improvemen
 
 ---
 
-## 📉 Python Visualizations (Dashboard Style)
+## 📉 Python Visualizations 
 
 Below is the dashboard-style visualization section, using **your actual uploaded files**.
 
