@@ -1,54 +1,166 @@
+
+
 # Customer Churn Analysis (Telecom Industry)
+*A Business Analytics Project focused on customer behavior, retention insights, and data-driven decision making.*
+<div style="display: flex; justify-content: center;">
+    <img src="customer_churn.png" width="25%">
+</div>
 
-This project analyzes customer churn for a fictional telecommunications company.  It includes a sample dataset, a SQL script for exploratory data analysis (EDA), a Python script to generate visualizations, and this README to explain the purpose and usage of each component.  The goal is to understand factors that contribute to customer attrition and to provide insights for business stakeholders.
+---
 
-## 1. Data File & Source
+## 📌 Project Overview
 
-The dataset used in this project is based on the **Telco customer churn** (https://www.kaggle.com/datasets/blastchar/telco-customer-churn?resource=download)sample data module published by IBM, which tracks a fictional telco company's customer churn.  The source dataset contains around 7043 customer records with 21 features covering demographics, account information, service usage, and churn status.  
+Customer churn is a critical performance indicator for telecom companies, directly affecting revenue stability and customer lifetime value.  
+This project uses SQL, Python, and exploratory data analysis (EDA) to help business stakeholders understand:
 
-Key columns include:
+- Why customers churn  
+- Which customer segments are most at risk  
+- How contract type, payment method, tenure, and pricing influence churn  
+- What targeted retention strategies the business should implement  
 
-- **customerID**: unique identifier for each customer  
-- **gender**, **SeniorCitizen**, **Partner**, **Dependents**: demographic attributes  
-- **tenure**: number of months the customer has been with the company  
-- **PhoneService**, **MultipleLines**, **InternetService**, **OnlineSecurity**, **OnlineBackup**, **DeviceProtection**, **TechSupport**, **StreamingTV**, **StreamingMovies**: service usage features  
-- **Contract**, **PaperlessBilling**, **PaymentMethod**: contract and billing information  
-- **MonthlyCharges**, **TotalCharges**: billing amounts  
-- **Churn**: whether the customer churned in the last month
+The goal is **actionable business insights**, not predictive modeling.
 
-Because internet download is disabled in this environment, a synthetic sample dataset (`customer_churn_sample.csv`) with 100 rows has been created using similar columns and value distributions.  This file is provided for demonstration and can be replaced with the official dataset when running the project locally.
+---
 
-## 2. Analytics File (SQL)
+<div align="center">
 
-The SQL script (`churn_analysis.sql`) performs basic and intermediate EDA on the dataset.  Each query includes comments explaining why specific SQL functions are used so that someone new to SQL or a business analytics manager can quickly understand the purpose.
+# 📊 Key Performance Indicators (KPIs)
 
-Highlights of the SQL analysis:
+<table>
+  <tr>
+    <td align="center" width="250">
+      <h3>📉 Overall Churn Rate</h3>
+      <h2>~27%</h2>
+      <p>Industry-relevant churn level for telecom</p>
+    </td>
+    <td align="center" width="250">
+      <h3>👥 Total Customers Analyzed</h3>
+      <h2>7,043*</h2>
+      <p>(*Original IBM dataset reference)</p>
+    </td>
+    <td align="center" width="250">
+      <h3>⚠ High-Risk Segment</h3>
+      <h2>Month-to-Month</h2>
+      <p>Highest churn driver across all customer groups</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="250">
+      <h3>💸 Avg. Monthly Charges</h3>
+      <h2>$70–$75</h2>
+      <p>Higher charges correlate with higher churn</p>
+    </td>
+    <td align="center" width="250">
+      <h3>⏱ Peak Churn Tenure</h3>
+      <h2>0–12 Months</h2>
+      <p>Early-life churn indicates onboarding issues</p>
+    </td>
+    <td align="center" width="250">
+      <h3>💳 Highest Churn Payment Method</h3>
+      <h2>Electronic Check</h2>
+      <p>Friction-heavy billing experience</p>
+    </td>
+  </tr>
+</table>
 
-- **Counting records** using `COUNT(*)` to determine total customers.  
-- **Calculating churn rate** via conditional counts inside `COUNT(CASE WHEN … THEN … END)` and computing percentages with arithmetic and `ROUND()`.  
-- **Computing averages** for tenure, monthly charges, and total charges with `AVG()` and summarizing churn counts with `SUM()` for conditional counting.  
-- **Grouping** by contract or payment method using `GROUP BY` to compare churn rates across categories.  
-- **Creating tenure bands** with `CASE` statements to bucket customers into ranges (e.g., 0–1 year, 1–2 years) and calculate churn rate per band.  
-- **Identifying high-value at‑risk customers** by selecting churned customers whose monthly and total charges exceed the overall average.  
-- **Using window functions** (`AVG() OVER (…)`) to compute a running average of monthly charges within each contract type.  
+</div>
 
-To execute the SQL script:
+---
 
-1. Load `customer_churn_sample.csv` into your preferred relational database (e.g., SQLite, PostgreSQL) as a table named `telco_churn`.  
-2. Run the queries in `churn_analysis.sql` sequentially or individually.  
-3. Inspect the results to understand churn patterns and key factors.
+## 📂 Dataset Source
 
-## 3. Visualization Files
+This project references the IBM **Telco Customer Churn** dataset:  
+https://www.kaggle.com/datasets/blastchar/telco-customer-churn  
 
-The Python script (`churn_visualizations.py`) reads the dataset and produces several charts using **matplotlib**.  Each chart is saved as an image file when run locally.  The script creates:
+A synthetic subset (`customer_churn_sample.csv`, 100 rows) is used in this environment, mirroring the structure of the original dataset.
 
-1. **Churn Distribution** – a bar chart showing the count of churned vs retained customers.  
-2. **Tenure Distribution** – a histogram illustrating how long customers have been with the company.  
-3. **Monthly Charges Distribution** – a histogram of monthly billing amounts.  
-4. **Churn by Contract Type** – a stacked bar chart comparing churn vs non‑churn across contract categories (Month‑to‑month, One year, Two year).  
-5. **Churn by Tenure Band** – a stacked bar chart showing churn counts within tenure ranges (e.g., 0–1 year, 1–2 years).  
+### Key Fields
 
-Running the script:
+- **Demographics:** gender, SeniorCitizen, Partner, Dependents  
+- **Account Details:** customerID, tenure, contract type, payment method  
+- **Services:** phone, internet, streaming, backups, tech support  
+- **Financials:** MonthlyCharges, TotalCharges  
+- **Outcome:** Churn (Yes/No)
 
-```bash
-python churn_visualizations.py
+---
+
+## 📊 SQL Analysis (Business-Driven EDA)
+
+The SQL script (`churn_analysis.sql`) includes analysis used by business and strategy teams:
+
+### Insights Uncovered
+
+#### **1️⃣ High churn among month-to-month customers**
+They lack commitment, making them the highest-risk segment.
+
+#### **2️⃣ Early-tenure churn is a major operational issue**
+Customers leaving within the first 12 months indicates onboarding and experience gaps.
+
+#### **3️⃣ High-value customers are churning**
+Customers with higher monthly charges show elevated churn risk when perceived value is low.
+
+#### **4️⃣ Payment method affects churn**
+Electronic check customers churn at the highest rate—likely due to friction or poor user experience.
+
+These findings guide retention campaigns, pricing adjustments, and CX improvements.
+
+---
+
+## 📉 Python Visualizations (Dashboard Style)
+
+Below is the dashboard-style visualization section, using **your actual uploaded files**.
+
+---
+
+### **📌 Churn Overview & Customer Lifecycle**
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="Churn_Distribution.png" width="48%">
+    <img src="Tenure_Distribution_in_Months.png" width="48%">
+</div>
+
+---
+
+### **📌 Financial Behavior & Revenue Patterns**
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="Monthly_Charges_Distribution.png" width="48%">
+    <img src="Churn_by_contract_type.png" width="48%">
+</div>
+
+---
+
+### **📌 Churn by Tenure Band**
+
+<div style="display: flex; justify-content: center;">
+    <img src="Churn_by_tenure_band.png" width="60%">
+</div>
+
+---
+
+## 🎯 Key Business Insights & Recommendations
+
+### **1. Improve early-life customer experience**
+Most churn occurs in months 0–12.  
+➡ Strengthen onboarding and early retention programs.
+
+### **2. Encourage long-term contracts**
+Month-to-month customers churn the most.  
+➡ Promote yearly contracts with discounts or loyalty benefits.
+
+### **3. Reinforce value for high-paying customers**
+Higher charges correlate with higher churn.  
+➡ Offer bundles, value messaging, and proactive support.
+
+### **4. Promote convenient payment methods**
+Electronic check users churn the most.  
+➡ Incentivize auto-pay or credit card billing.
+
+These insights directly support retention strategy, pricing decisions, and customer value management.
+
+---
+
+# Customer Churn Analysis (Telecom Industry)
+*A Business Analytics Project focused on customer behavior, retention insights, and data-driven decision making.*
+
+
